@@ -3,11 +3,29 @@ plugins {
     id 'com.adarshr.test-logger' version '4.0.0'
     id 'checkstyle'
     id 'org.gradlex.extra-java-module-info' version '1.13.1'
+    id 'application'
 }
 
 java {
     // Must be disabled in order to use the gradle-modules-plugin
     modularity.inferModulePath = false
+}
+application {
+    mainModule = 'info.openrocket.swing'
+    mainClass = 'info.openrocket.swing.startup.SwingStartup'
+
+    applicationDefaultJvmArgs = [
+            '-Dapple.awt.application/appearance=system',
+            '--add-exports', 'java.base/java.lang=ALL-UNNAMED',
+            '--add-exports', 'java.desktop/sun.awt=ALL-UNNAMED',
+            '--add-exports', 'java.desktop/sun.java2d=ALL-UNNAMED',
+            '-Dsun.java2d.noddraw=true',
+            '-Dsun.java2d.d3d=false',
+            '-Dsun.java2d.ddforcevram=true',
+            '-Dsun.java2d.ddblit=false',
+            '-Dsun.java2d.useflipBufferStrategy=True',
+
+    ]
 }
 
 def buildProperties = new Properties()
