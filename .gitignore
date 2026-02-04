@@ -84,7 +84,6 @@ lib-test/OpenRocket Library Test.iml
 !/.idea/runConfigurations/SwingStartup.xml
 !/.idea/runConfigurations/openrocket_jar.xml
 !/.idea/runConfigurations/openrocket_test.xml
-/.idea/runConfigurations/
 
 # VSCode
 .vscode/
