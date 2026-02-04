@@ -44,6 +44,9 @@ import info.openrocket.core.util.BuildProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import info.openrocket.swing.listeners.HelloBroadcaster;
+import info.openrocket.swing.listeners.HelloListener;
+
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
@@ -101,8 +104,21 @@ public class SwingStartup {
 		});
 		
 		log.info("Startup complete");
-		
-	}
+
+        // Temp Test listener - this will implament and trigger the listener
+        HelloBroadcaster broadcaster = new HelloBroadcaster();
+
+        // Create the listener of the interface and add it to the list
+        broadcaster.addHelloListener(new HelloListener() {
+            @Override
+            public void onHelloEvent(String message) {
+                System.out.println(message);
+            }
+        });
+
+        // Trigger the event manually
+        broadcaster.broadcastHello("Let's pray and hope this works. I'm very eepy");
+    }
 
 	/**
 	 * Checks whether the Java Runtime Engine version is supported.
